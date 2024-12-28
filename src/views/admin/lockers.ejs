@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar Armários</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Link para o CSS, se necessário -->
+</head>
+<body>
+    <h1>Gerenciar Armários</h1>
+    <a href="/lockers/add">Adicionar Armário</a>
+    <div id="error-message" style="color: red;"></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Número</th>
+                <th>Localização</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="lockers-table-body">
+            <!-- Os armários serão inseridos aqui via JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // Simulação de dados de armários (substitua isso pela chamada real ao seu backend)
+        const lockers = [
+            
+            // Adicione mais armários conforme necessário
+        ];
+
+        const lockersTableBody = document.getElementById('lockers-table-body');
+
+        lockers.forEach(locker => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${locker.number}</td>
+                <td>${locker.location}</td>
+                <td>${locker.status}</td>
+                <td>
+                    <a href="/lockers/edit/${locker.id}">Editar</a>
+                    <form action="/lockers/delete/${locker.id}" method="POST" style="display:inline;">
+                        <button type="submit">Deletar</button>
+                    </form>
+                </td>
+            `;
+            lockersTableBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Modelo de Usuário
+model User {
+  id                Int       @id @default(autoincrement()) // Chave primária, com autoincremento
+  rm                Int                                        // Identificação do usuário
+  Nome              String                                     // Nome do usuário
+  Sobrenome         String                                     // Sobrenome do usuário
+  email             String   @unique                          // Email único do usuário
+  password          String                                     // Senha criptografada
+  curso             String                                     // Curso do usuário
+  emailVerified     Boolean   @default(false)                 // Email verificado, padrão 'false'
+  verificationToken String?                                   // Token de verificação de email
+  resetToken        String?   @unique                         // Token para resetar senha, único
+  locker            Locker?   @relation(fields: [lockerId], references: [id]) // Um usuário pode ter um armário
+  lockerId          Int?      @unique                         // Garantindo relação 1:1
+}
+
+// Modelo de Admin
+model Admin {
+  id            Int       @id @default(autoincrement()) 
+  admin         String    @unique                          // Nome de administrador único
+  email         String    @unique                          // Email único do administrador
+  password      String                                   // Senha do administrador
+  resetToken    String?                                   // Token para resetar senha
+  approvalToken String?                                   // Token de aprovação
+  approved      Boolean   @default(false)                // Se o admin foi aprovado
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Corredor {
+  id        Int       @id @default(autoincrement())
+  numero    Int   
+  salas     Sala[]                                   
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Sala {
+  id        Int       @id @default(autoincrement())
+  numero    Int                                  
+  corredor  Corredor   @relation(fields: [corredorId], references: [id]) // Relacionamento com corredor
+  corredorId Int
+  armarios  Locker[]                                // Relacionamento com armários
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Locker {
+  id        Int       @id @default(autoincrement())
+  numero    Int        @unique
+  sala      Sala      @relation(fields: [salaId], references: [id])
+  salaId    Int
+  user      User?     @relation
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+

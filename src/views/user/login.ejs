@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" href="/logo.svg" type="image/x-icon">
+    <style>
+        /* ======== Estilo Geral ======== */
+        body {
+            font-family: Arial, sans-serif;
+            background: url('/fundo2.svg') repeat;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* ======== Container Principal ======== */
+        .container {
+            display: flex;
+            width: 800px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        /* ======== Coluna Esquerda ======== */
+        .left {
+            background-image: linear-gradient( #171771,  #166599);
+            color: white;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .left img {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        .left h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .left a {
+            text-decoration: none;
+            background-color: white;
+            color: #094f7e;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .left a:hover {
+            background-color: #e6e6e6;
+        }
+
+        /* ======== Coluna Direita ======== */
+        .right {
+            flex: 2;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        select,
+        input[type="number"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #2c6b96;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background-color: #1a4d6d;
+        }
+
+        .text-center a {
+            font-size: 14px;
+            color: #2c6b96;
+            text-decoration: none;
+        }
+
+        .text-center a:hover {
+            text-decoration: underline;
+        }
+
+        /* Botão Administrador */
+        .admin-button {
+            background-color: #e98706;
+            /* Cor do botão */
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            border: none;
+        }
+
+        .admin-button:hover {
+            background-color: #C36721;
+        }
+
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+
+        }
+        .adminbotao{
+            background-color: #e98706; 
+            
+            
+
+
+        }#adminbotao:hover{
+
+            background-color:  #ae6404 
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Coluna Esquerda -->
+        <div class="left">
+            <h2>Sistema de gerenciamento de armario</h2>
+            <img src="/logo.svg" alt="Logo">
+            <h2>Não tem uma conta ainda?<br> Crie uma clicando no botão abaixo</h2>
+            <a href="/register">Cadastre-se</a>
+        </div>
+
+        <!-- Coluna Direita -->
+        <div class="right">
+            <h2>Login</h2>
+            <% if (query.error) { %>
+                <div class="alert alert-danger">
+                    <%= query.error %>
+                </div>
+                <% } %>
+                    <form action="/login" method="POST">
+                        <div class="mb-3">
+                            <label for="rm" class="form-label">RM</label>
+                            <input type="number" class="form-control" id="rm" name="rm" required>
+                        </div>
+
+                        <!-- Campo de seleção de ETEC -->
+                        <div class="mb-3">
+                            <label for="etec" class="form-label">ETEC</label>
+                            <select class="form-select" id="etec" name="etec" required>
+                                <option value="" disabled selected>Selecione sua ETEC</option>
+                                <option value="224">ETEC ABDIAS DO NASCIMENTO - São Paulo</option>
+                                <option value="107">ETEC ADOLPHO BEREZIN - Mongaguá</option>
+                                <option value="023">ETEC ALBERT EINSTEIN - São Paulo</option>
+                                <option value="152">ETEC ALBERTO SANTOS DUMONT - Guarujá</option>
+                                <option value="255">ETEC ALCIDES CESTARI - Monte Alto</option>
+                                <option value="027">ETEC AMIM JUNDI - Osvaldo Cruz</option>
+                                <option value="214">ETEC ÂNGELO CAVALHEIRO - Serrana</option>
+                                <option value="030">ETEC ANTONIO DE PÁDUA CARDOSO - Batatais</option>
+                                <option value="031">ETEC ANTONIO DEVISATE - Marília</option>
+                                <option value="245">ETEC ANTÔNIO FURLAN - Barueri</option>
+                                <option value="033">ETEC ANTONIO JUNQUEIRA DA VEIGA - Igarapava</option>
+                                <option value="035">ETEC ARISTÓTELES FERREIRA - Santos</option>
+                                <option value="215">ETEC ARNALDO PEREIRA CHEREGATTI - Aguaí</option>
+                                <option value="038">ETEC ASTOR DE MATTOS CARVALHO - Cabrália Paulista</option>
+                                <option value="039">ETEC AUGUSTO TORTOLERIO ARAÚJO - Paraguaçu Paulista</option>
+                                <option value="262">ETEC BARTOLOMEU BUENO DA SILVA - Anhanguera - Santana de Parnaíba
+                                </option>
+                                <option value="042">ETEC BENEDITO STORANI - Jundiaí</option>
+                                <option value="256">ETEC BENTO CARLOS BOTELHO DO AMARAL - Guariba</option>
+                                <option value="043">ETEC BENTO QUIRINO - Campinas</option>
+                                <option value="045">ETEC CARLOS DE CAMPOS - São Paulo</option>
+                                <option value="134">ETEC CAROLINA CARINATO SAMPAIO - São Paulo</option>
+                                <option value="223">ETEC CEPAM - São Paulo</option>
+                                <option value="048">ETEC CÔNEGO JOSÉ BENTO - Jacareí</option>
+                                <option value="007">ETEC CONSELHEIRO ANTONIO PRADO - Campinas</option>
+                                <option value="056">ETEC CORONEL FERNANDO FEBELIANO DA COSTA - Piracicaba</option>
+                                <option value="108">ETEC CORONEL RAPHAEL BRANDÃO - Barretos</option>
+                                <option value="261">ETEC DARCY PEREIRA DE MORAES - Itapetinga</option>
+                                <option value="165">ETEC DE ARAÇATUBA - Araçatuba</option>
+                                <option value="180">ETEC DE ARTES - São Paulo</option>
+                                <option value="306">ETEC DE BRAGANÇA PAULISTA - Bragança Paulista</option>
+                                <option value="201">ETEC DE CAMPO LIMPO PAULISTA - Campo Limpo Paulista</option>
+                                <option value="213">ETEC DE CARAGUATATUBA - Caraguatatuba</option>
+                                <option value="144">ETEC DE CARAPICUÍBA - Carapicuíba</option>
+                                <option value="199">ETEC DE CIDADE TIRADENTES - São Paulo</option>
+                                <option value="222">ETEC DE COTIA - Cotia</option>
+                                <option value="303">ETEC DE CRAVINHOS - Cravinhos</option>
+                                <option value="181">ETEC DE CUBATÃO - Cubatão</option>
+                                <option value="241">ETEC DE EMBU - Embu das Artes</option>
+                                <option value="267">ETEC DE ESPORTES CURT WALTER OTTO BAUMGART - São Paulo</option>
+                                <option value="170">ETEC DE FERRAZ DE VASCONCELOS - Ferraz de Vasconcelos</option>
+                                <option value="231">ETEC DE FRANCISCO MORATO - Francisco Morato</option>
+                                <option value="118">ETEC DE GUAIANASES - São Paulo</option>
+                                <option value="304">ETEC DE GUAÍRA - Guaíra</option>
+                                <option value="295">ETEC DE GUARULHOS - Guarulhos</option>
+                                <option value="115">ETEC DE HORTOLÂNDIA - Hortolândia</option>
+                                <option value="065">ETEC DE ILHA SOLTEIRA - Ilha Solteira</ <option value="158">ETEC DE
+                                    ITANHAÉM - Itanhaém</option>
+                                <option value="249">ETEC DE ITAQUAQUECETUBA - Itaquaquecetuba</option>
+                                <option value="169">ETEC DE ITAQUERA - São Paulo</option>
+                                <option value="243">ETEC DE ITARARÉ - Itararé</option>
+                                <option value="148">ETEC DE LINS - Lins</option>
+                                <option value="128">ETEC DE MAUÁ - Mauá</option>
+                                <option value="198">ETEC DE MONTE MOR - Monte Mor</option>
+                                <option value="266">ETEC DE PERUÍBE - Peruíbe</option>
+                                <option value="203">ETEC DE PIEDADE - Piedade</option>
+                                <option value="210">ETEC DE POÁ - Poá</option>
+                                <option value="153">ETEC DE PRAIA GRANDE - Praia Grande</option>
+                                <option value="277">ETEC DE SANTA FÉ DO SUL - Santa Fé do Sul</option>
+                                <option value="219">ETEC DE SANTA ISABEL - Santa Isabel</option>
+                                <option value="237">ETEC DE SANTA ROSA DE VITERBO - Santa Rosa de Viterbo</option>
+                                <option value="018">ETEC DE SÃO PAULO - São Paulo</option>
+                                <option value="116">ETEC DE SÃO ROQUE - São Roque</option>
+                                <option value="188">ETEC DE SÃO SEBASTIÃO - São Sebastião</option>
+                                <option value="172">ETEC DE SAPOPEMBA - São Paulo</option>
+                                <option value="302">ETEC DE SUMARÉ - Sumaré</option>
+                                <option value="190">ETEC DE SUZANO - Suzano</option>
+                                <option value="208">ETEC DE TIQUATIRA - São Paulo</option>
+                                <option value="179">ETEC DE VARGEM GRANDE DO SUL - Vargem Grande do Sul</option>
+                                <option value="185">ETEC DE VILA FORMOSA - São Paulo</option>
+                                <option value="193">ETEC DEPUTADO ARY DE CAMARGO PEDROSO - Piracicaba</option>
+                                <option value="058">ETEC DEPUTADO FRANCISCO FRANCO - Rancharia</option>
+                                <option value="093">ETEC DEPUTADO PAULO ORNELLAS CARVALHO DE BARROS - Garça</option>
+                                <option value="110">ETEC DEPUTADO SALIM SEDEH - Leme</option>
+                                <option value="122">ETEC DONA ESCOLÁSTICA ROSA - Santos</option>
+                                <option value="019">ETEC DOUTOR ADAIL NUNES DA SILVA - Taquaritinga</option>
+                                <option value="047">ETEC DOUTOR CAROLINO DA MOTTA E SILVA - Espírito Santo do Pinhal
+                                </option>
+                                <option value="242">ETEC DOUTOR CELSO GIGLIO - Osasco</option>
+                                <option value="049">ETEC DOUTOR DÁRIO PACHECO PEDROSO - Taquarivai</option>
+                                <option value="050">ETEC DOUTOR DEMÉTRIO AZEVEDO JÚNIOR - Itapeva</option>
+                                <option value="142">ETEC DOUTOR EMÍLIO HERNANDEZ AGUILAR - Franco da Rocha</option>
+                                <option value="059">ETEC DOUTOR FRANCISCO NOGUEIRA DE LIMA - Casa Branca</option>
+                                <option value="125">ETEC DOUTOR GERALDO JOSÉ RODRIGUES ALCKMIN - Taubaté</option>
+                                <option value="071">ETEC DOUTOR JOSÉ COURY - Rio das Pedras</option>
+                                <option value="073">ETEC DOUTOR JOSÉ LUIZ VIANA COUTINHO - Jales</option>
+                                <option value="078">ETEC DOUTOR JÚLIO CARDOSO - Franca</option>
+                                <option value="080">ETEC DOUTOR LUIZ CESAR COUTO - Quatá</option>
+                                <option value="123">ETEC DOUTOR RENATO CORDEIRO - Birigui</option>
+                                <option value="154">ETEC DOUTORA MARIA AUGUSTA SARAIVA - São Paulo</option>
+                                <option value="194">ETEC DOUTORA RUTH CARDOSO - São Vicente</option>
+                                <option value="054">ETEC ELIAS NECHAR - Catanduva</option>
+                                <option value="063">ETEC ENGENHEIRO HERVAL BELLUSCI - Adamantina</option>
+                                <option value="206">ETEC EURO ALBINO DE SOUZA - Mogi Guaçu</option>
+                                <option value="016">ETEC FERNANDO PRESTES - Sorocaba</option>
+                                <option value="234">ETEC FERRUCIO HUMBERTO GAZZETTA - Nova Odessa</option>
+                                <option value="060">ETEC FRANCISCO GARCIA - Mococa</option>
+                                <option value="037">ETEC FREI ARNALDO MARIA DE ITAPORANGA - Votuporanga</option>
+                                <option value="013">ETEC GETÚLIO VARGAS - São Paulo</option>
+                                <option value="226">ETEC GILDO MARÇAL BEZERRA BRANDÃO - São Paulo</option>
+                                <option value="191">ETEC GINO REZAGHI - Cajamar</option>
+                                <option value="061">ETEC GUARACY SILVEIRA - São Paulo</option>
+                                <option value="236">ETEC GUSTAVO TEIXEIRA - São Pedro</option>
+                                <option value="238">ETEC IRMÃ AGOSTINA - São Paulo</option>
+                                <option value="285">ETEC ITAQUERA II - São Paulo</option>
+                                <option value="066">ETEC JACINTO FERREIRA DE SÁ - Ourinhos</option>
+                                <option value="228">ETEC JARAGUÁ - São Paulo</option>
+                                <option value="221">ETEC JARDIM ÂNGELA - São Paulo</option>
+                                <option value="009">ETEC JOÃO BAPTISTA DE LIMA FIGUEIREDO - Mococa</option>
+                                <option value="067">ETEC JOÃO BELARMINO - Amparo</option>
+                                <option value="068">ETEC JOÃO GOMES DE ARAÚJO - Pindamonhangaba</option>
+                                <option value="069">ETEC JOÃO JORGE GERAISSATE - Penápolis</option>
+                                <option value="218">ETEC JOÃO MARIA STEVANATTO - Itapira</option>
+                                <option value="070">ETEC JOAQUIM FERREIRA DO AMARAL - Jaú</option>
+                                <option value="011">ETEC JORGE STREET - São Caetano do Sul</option>
+                                <option value="253">ETEC JORNALISTA ROBERTO MARINHO - São Paulo</option>
+                                <option value="074">ETEC JOSÉ MARTIMIANO DA SILVA - Ribeirão Preto</option>
+                                <option value="300">ETEC JOSÉ MIGUEL SOARES - Itapevi</option>
+                                <option value="076">ETEC JOSÉ ROCHA MENDES - São Paulo</option>
+                                <option value="014">ETEC JÚLIO DE MESQUITA - Santo André</option>
+                                <option value="166">ETEC JUSCELINO KUBITSCHEK DE OLIVEIRA - Diadema</option>
+                                <option value="079">ETEC LAURINDO ALVES DE QUEIROZ - Miguelópolis</option>
+                                <option value="010">ETEC LAURO GOMES - São Bernardo do Campo</option>
+                                <option value="082">ETEC MACHADO DE ASSIS - Caçapava</option>
+                                <option value="247">ETEC MANDAQUI - São Paulo</option>
+                                <option value="083">ETEC MANOEL DOS REIS ARAÚJO - Santa Rita do Passa Quatro</option>
+                                <option value="086">ETEC MARTINHO DI CIERO - Itu</option>
+                                <option value="088">ETEC MONSENHOR ANTÔNIO MAGLIANO - Garça</option>
+                                <option value="084">ETEC ORLANDO QUAGLIATO - Santa Cruz do Rio Pardo</option>
+                                <option value="240">ETEC PADRE CARLOS LEÔNCIO DA SILVA - Lorena</option>
+                                <option value="075">ETEC PADRE JOSÉ NUNES DIAS - Monte Aprazível</option>
+                                <option value="220">ETEC PARQUE BELÉM - São Paulo</option>
+                                <option value="159">ETEC PARQUE DA JUVENTUDE - São Paulo</option>
+                                <option value="091">ETEC PAULINO BOTELHO - São Carlos</option>
+                                <option value="229">ETEC PAULISTANO - São Paulo</option>
+                                <option value="279">ETEC PAULO DO CARMO MONTEIRO - Caieiras</option>
+                                <option value="092">ETEC PAULO GUERREIRO FRANCO - Vera Cruz</option>
+                                <option value="094">ETEC PEDRO BADRAN - São Joaquim da Barra</option>
+                                <option value="095">ETEC PEDRO D'ARCÁDIA NETO - Assis</option>
+                                <option value="096">ETEC PEDRO FERREIRA ALVES - Mogi Mirim</option>
+                                <option value="098">ETEC PHILADELPHO GOUVEA NETTO - São José do Rio Preto</option>
+                                <option value="006">ETEC POLIVALENTE DE AMERICANA - Americana</option>
+                                <option value="024">ETEC PREFEITO ALBERTO FERES - Araras</option>
+                                <option value="268">ETEC PREFEITO BRAZ PASCHOALIN - Jandira</option>
+                                <option value="015">ETEC PRESIDENTE VARGAS - Mogi das Cruzes</option>
+                                <option value="207">ETEC PROFESSOR ADHEMAR BATISTA HEMÉRITAS - São Paulo</option>
+                                <option value="252">ETEC PROFESSOR ADOLPHO ARRUDA MELLO - Presidente Prudente</option>
+                                <option value="025">ETEC PROFESSOR ALCÍDIO DE SOUZA PRADO - Orlândia</option>
+                                <option value="026">ETEC PROFESSOR ALFREDO DE BARROS SANTOS - Guaratinguetá</option>
+                                <option value="149">ETEC PROFESSOR ANDRÉ BOGASIAN - Osasco</option>
+                                <option value="034">ETEC PROFESSOR APRÍGIO GONZAGA - São Paulo</option>
+                                <option value="036">ETEC PROFESSOR ARMANDO BAYEUX DA SILVA - Rio Claro</option>
+                                <option value="138">ETEC PROFESSOR ARMANDO JOSÉ FARINAZZO - Fernandópolis</option>
+                                <option value="041">ETEC PROFESSOR BASÍLIDES DE GODOY - São Paulo</option>
+                                <option value="012">ETEC PROFESSOR CAMARGO ARANHA - São Paulo</option>
+                                <option value="046">ETEC PROFESSOR CARMELINO CORREA JÚNIOR - Franca</option>
+                                <option value="147">ETEC PROFESSOR CARMINE BIAGIO TUNDISI - Atibaia</option>
+                                <option value="032">ETEC PROFESSOR DOUTOR ANTÔNIO EUFRÁSIO TOLEDO - Presidente Prudente
+                                </option>
+                                <option value="117">ETEC PROFESSOR DOUTOR JOSÉ DAGNONI - Santa Bárbara d'Oeste</option>
+                                <option value="055">ETEC PROFESSOR EUDÉCIO LUIZ VICENTE - Adamantina</option>
+                                <option value="057">ETEC PROFESSOR FRANCISCO DOS SANTOS - São Simão</option>
+                                <option value="064">ETEC PROFESSOR HORÁCIO AUGUSTO DA SILVEIRA - São Paulo</option>
+                                <option value="151">ETEC PROFESSOR ÍDIO ZUCCHI - Bebedouro</option>
+                                <option value="202">ETEC PROFESSOR JADYR SALLES - Porto Ferreira</option>
+                                <option value="232">ETEC PROFESSOR JOSÉ CARLOS SENO JUNIOR - Olímpia</option>
+                                <option value="233">ETEC PROFESSOR JOSÉ IGNÁCIO AZEVEDO FILHO - Ituverava</option>
+                                <option value="077">ETEC PROFESSOR JOSÉ SANT'ANA DE CASTRO - Cruzeiro</option>
+                                <option value="081">ETEC PROFESSOR LUIZ PIRES BARBOSA - Cândido Mota</option>
+                                <option value="044">ETEC PROFESSOR MARCOS UCHÔAS DOS SANTOS PENCHEL - Cachoeira Paulista
+                                </option>
+                                <option value="164">ETEC PROFESSOR MÁRIO ANTÔNIO VERZA - Palmital</option>
+                                <option value="136">ETEC PROFESSOR MASSUYUKI KAWANO - Tupã</option>
+                                <option value="087">ETEC PROFESSOR MATHEUS LEITE DE ABREU - Mirassol</option>
+                                <option value="099">ETEC PROFESSOR MILTON GAZZETTI - Presidente Venceslau</option>
+                                <option value="097">ETEC PROFESSOR PEDRO LEME BRISOLLA SOBRINHO - Ipaussu</option>
+                                <option value="150">ETEC PROFESSOR RODOLPHO JOSÉ DEL GUERRA - São José do Rio Pardo
+                                </option>
+                                <option value="090">ETEC PROFESSOR URIAS FERREIRA - Jaú</option>
+                                <option value="029">ETEC PROFESSORA ANNA DE OLIVEIRA FERRAZ - Araraquara</option>
+                                <option value="052">ETEC PROFESSORA CARMELINA BARBOSA - Dracena</option>
+                                <option value="254">ETEC PROFESSORA DOUTORA DOROTI QUIOMI KANASHIRO TOYOHARA - São Paulo
+                                </option>
+                                <option value="187">ETEC PROFESSORA ERMELINDA GIANNINI TEIXEIRA - Santana de Parnaíba
+                                </option>
+                                <option value="062">ETEC PROFESSORA HELCY MOREIRA MARTINS AGUIAR - Cafelândia</option>
+                                <option value="195">ETEC PROFESSORA ILZA NASCIMENTO PINTUS - São José dos Campos
+                                </option>
+                                <option value="274">ETEC PROFESSORA LUZIA MARIA MACHADO - Arujá</option>
+                                <option value="141">ETEC PROFESSORA MARIA CRISTINA MEDEIROS - Ribeirão Pires</option>
+                                <option value="212">ETEC PROFESSORA MARINÊS TEODORO DE FREITAS ALMEIDA - Novo Horizonte
+                                </option>
+                                <option value="156">ETEC PROFESSORA NAIR LUCCAS RIBEIRO - Teodoro Sampaio</option>
+                                <option value="225">ETEC RAPOSO TAVARES - São Paulo</option>
+                                <option value="282">ETEC RIO GRANDE DA SERRA - Rio Grande da Serra</option>
+                                <option value="100">ETEC ROSA PERRONE SCAVONE - Itatiba</option>
+                                <option value="017">ETEC RUBENS DE FARIA E SOUZA - Sorocaba</option>
+                                <option value="287">ETEC SANTA CRUZ DAS PALMEIRAS - Santa Cruz das Palmeiras</option>
+                            </select>
+                        </div>
+
+
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Senha</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <button type="submit">Entrar</button>
+                        <a href="/loginAdm"> <button type="button" id="adminbotao"
+                                class="admin-button" onclick="setAdmin()">Entrar como
+                                Administrador</button></a>
+                        <div class="text-center mt-3">
+                            <a href="/reset-password">Esqueceu sua senha?</a>
+                        </div>
+                    </form>
+        </div>
+    </div>
+
+    <script>
+        function setAdmin() {
+            // Adiciona o valor do tipo de usuário "Administrador" ao formulário
+            document.querySelector('form').innerHTML += '<input type="hidden" name="role" value="administrador">';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Link para o CSS, se necessário -->
+</head>
+<body>
+    <h1><%= title %></h1>
+    <form action="<%= locker ? '/lockers/edit/' + locker.id : '/lockers/add' %>" method="POST">
+        <label for="number">Número:</label>
+        <input type="number" id="number" name="number" value="<%= locker ? locker.number : '' %>" required>
+
+        <label for="location">Localização:</label>
+        <input type="text" id="location" name="location" value="<%= locker ? locker.location : '' %>" required>
+
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+            <option value="disponivel" <%= locker && locker.status === 'disponivel' ? 'selected' : '' %>>Disponível</option>
+            <option value="indisponivel" <%= locker && locker.status === 'indisponivel' ? 'selected' : '' %>>Indisponível</option>
+        </select>
+
+        <label for="userId">ID do Usuário:</label>
+        <input type="text" id="userId" name="userId" value="<%= locker ? locker.userId : '' %>">
+
+        <label for="startDate">Data de Início:</label>
+        <input type="date" id="startDate" name="startDate" value="<%= locker && locker.startDate ? locker.startDate.toISOString().split('T')[0] : '' %>">
+
+        <label for="endDate">Data de Fim:</label>
+        <input type="date" id="endDate" name="endDate" value="<%= locker && locker.endDate ? locker.endDate.toISOString().split('T')[0] : '' %>">
+
+        <label for="etec ">ETEC:</label>
+        <input type="text" id="etec" name="etec" value="<%= locker ? locker.etec : '' %>" required>
+
+        <button type="submit"><%= locker ? 'Atualizar Armário' : 'Adicionar Armário' %></button>
+    </form>
+    <div id="error-message" style="color: red;"><%= error %></div>
+    <a href="/lockers">Voltar para a lista de armários</a>
+</body>
+</html>

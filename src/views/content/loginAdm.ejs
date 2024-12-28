@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="/logo.svg" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <style>
+        /* ======== Estilo Geral ======== */
+        body {
+            font-family: Arial, sans-serif;
+            background: url('/fundo.svg') repeat;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* ======== Container Principal ======== */
+        .container {
+            display: flex;
+            width: 800px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        /* ======== Coluna Esquerda ======== */
+        .left {
+            background-image: linear-gradient( #171771,  #166599);
+            color: white;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .left img {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        .left h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .left a {
+            text-decoration: none;
+            background-color: white;
+            color: #094f7e;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .left a:hover {
+            background-color: #e6e6e6;
+        }
+
+        /* ======== Coluna Direita ======== */
+        .right {
+            flex: 2;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .admentrar {
+            width: 100%;
+            background-color: #2c6b96;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .admentrar:hover {
+            background-color: #1a4d6d;
+        }
+
+        .text-center a {
+            font-size: 14px;
+            color: #2c6b96;
+            text-decoration: none;
+        }
+
+        .text-center a:hover {
+            text-decoration: underline;
+        }   
+          .alunobotao{
+            width: 100%;
+            background-color: #e98706; 
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            
+        }.alunobotao:hover{
+
+            background-color:  #ae6404 
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Coluna Esquerda -->
+        <div class="left">
+            <img src="/logo.svg" alt="Logo">
+            <h2>Bem-vindo de volta!</h2>
+            <p>Não tem uma conta ainda?</p>
+            <a href="/registerAdm">Cadastre-se</a>
+        </div>
+
+        <!-- Coluna Direita -->
+        <div class="right">
+            <h2>Login</h2>
+            <% if (error) { %>
+                <p style="color: red;">
+                    <%= error === 'invalid' ? 'Usuário ou senha inválidos!' : 'Erro no servidor!' %>
+                </p>
+            <% } %>
+            <form action="/loginAdm" method="POST">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Senha" required>
+                <button type="submit"  class="admentrar">Entrar</button>
+                <a href="/login"> <button type="button" id="alunobotao" class="alunobotao" onclick="setAdmin()">Entrar como Aluno</button></a>
+
+                <div class="text-center">
+                    <a href="/reset-password">Esqueceu sua senha?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
